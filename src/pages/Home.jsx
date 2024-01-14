@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getTrendingMovies } from '../components/api-request/api-request';
 import List from 'components/list-component/List';
-import Header from 'components/header-component/Header';
 import {
   Box,
   Container,
@@ -37,7 +36,6 @@ const Home = () => {
   return (
     <Box>
       <CssBaseline />
-      <Header />
       <Container>
         <Typography variant="h4" mt={3} mb={2}>
           Trending Movies

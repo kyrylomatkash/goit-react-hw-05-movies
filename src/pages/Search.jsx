@@ -1,17 +1,11 @@
 // Імпорт бібліотек і компонентів
 import React, { useEffect, useState } from 'react';
-import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Button,
-  Container,
-  TextField,
-  Typography,
-  CircularProgress,
-} from '@mui/material';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { Box, Container, Typography, CircularProgress } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import List from 'components/list-component/List';
+import SearchForm from '../components/search-form-component/SearchForm';
 // Імпорт логіки API запиту
 import { getSearch } from '../components/api-request/api-request';
 
@@ -24,7 +18,6 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const location = useLocation();
-  const navigate = useNavigate();
   // Отримання пошукового запиту
   useEffect(() => {
     const query = searchParams.get('search');
@@ -34,24 +27,7 @@ const Search = () => {
       setMovies([]);
     }
   }, [searchParams]);
-  // Пошукова форма
-  const SearchForm = ({ onSubmit, searchQuery, handleInputChange }) => (
-    <form onSubmit={onSubmit} style={{ width: '100%', maxWidth: '400px' }}>
-      <TextField
-        label="Search movies"
-        variant="outlined"
-        name="search"
-        value={searchQuery}
-        onChange={handleInputChange}
-        fullWidth
-        sx={{ marginBottom: 2 }}
-      />
-      <Button type="submit" variant="outlined" fullWidth>
-        Search
-      </Button>
-    </form>
-  );
-  // Запит на отримання фільмів за пошуковим запитом
+
   const getSearchQuery = async name => {
     setIsLoading(true);
     try {
@@ -81,23 +57,9 @@ const Search = () => {
     }
     setSearchParams({ search: notEmptySearchQuery });
   };
-  // Повернення назад
-  const handleBackButtonClick = () => {
-    navigate('/');
-  };
 
   return (
     <Container>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleBackButtonClick}
-        sx={{
-          marginTop: 3,
-        }}
-      >
-        Go back to home
-      </Button>
       <Box
         mt={3}
         display="flex"

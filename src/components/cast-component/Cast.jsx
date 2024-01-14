@@ -9,17 +9,18 @@ import {
   StyledBox,
   CastCard,
   CastImage,
-  NoAccountsImage,
   CastName,
   CastPopularity,
   LoadingSpinner,
 } from './cast.styles';
+import imageUnavailable from './imageunavailable.png';
 // Основна функція компоненту
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const defaultImgPath = imageUnavailable;
   // Отримування інформації про акторів
   useEffect(() => {
     const fetchMovieCast = async () => {
@@ -53,7 +54,11 @@ const Cast = () => {
                       alt={original_name}
                     />
                   ) : (
-                    <NoAccountsImage />
+                    <img
+                      src={defaultImgPath}
+                      alt={original_name}
+                      style={{ width: '200px', height: '200px' }}
+                    />
                   )}
                   <CastName variant="subtitle1" fontWeight="bold" mt={2}>
                     {original_name}

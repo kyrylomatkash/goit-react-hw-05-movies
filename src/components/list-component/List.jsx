@@ -20,10 +20,8 @@ const List = ({ movies, location }) => {
               <StyledListItem key={id}>
                 <StyledLink
                   as={RouterLink}
-                  to={{
-                    pathname: `/movies/${id}`,
-                    state: { from: location },
-                  }}
+                  to={{ pathname: `/movies/${id}` }}
+                  state={{ from: location }}
                 >
                   <StyledTypography variant="subtitle1" color="primary">
                     {original_title}

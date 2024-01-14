@@ -1,6 +1,6 @@
 // Імпорт бібліотек
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import {
   CardContent,
   Typography,
@@ -18,11 +18,15 @@ import {
   ButtonsContainer,
   StyledButton,
 } from './pages-styles/overview.styles';
+import posterUnavailable from './pages-styles/posterunavailable.png';
 // Основна функція компоненту
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const defaultImgPath = posterUnavailable;
+  const goBack = useRef(location?.state?.from ?? '/');
   // Отримання даних про фільм
   useEffect(() => {
     const fetchMovie = async id => {
@@ -60,7 +64,7 @@ const MovieDetails = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Breadcrumbs>
-                <Link to="/" style={{ textDecoration: 'none' }}>
+                <Link to={goBack.current} style={{ textDecoration: 'none' }}>
                   <Button
                     variant="outlined"
                     color="primary"
@@ -73,15 +77,17 @@ const MovieDetails = () => {
             </Grid>
             <Grid item container spacing={3}>
               <Grid item xs={12} md={4}>
-                {poster_path !== undefined && (
-                  <CardMedia
-                    component="img"
-                    alt={original_title}
-                    height="500"
-                    image={`https://image.tmdb.org/t/p/w342/${poster_path}`}
-                    style={{ width: '100%' }}
-                  />
-                )}
+                <CardMedia
+                  component="img"
+                  alt={original_title}
+                  height="500"
+                  image={
+                    poster_path
+                      ? `https://image.tmdb.org/t/p/w342/${poster_path}`
+                      : defaultImgPath
+                  }
+                  style={{ width: '100%' }}
+                />
               </Grid>
               <Grid item xs={12} md={8}>
                 <RoundedCard>
