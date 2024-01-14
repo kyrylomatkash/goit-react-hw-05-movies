@@ -93,11 +93,7 @@ const Search = () => {
         color="primary"
         onClick={handleBackButtonClick}
         sx={{
-          marginLeft: 2,
           marginTop: 3,
-          position: 'absolute',
-          top: 0,
-          left: 0,
         }}
       >
         Go back to home
