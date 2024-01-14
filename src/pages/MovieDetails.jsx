@@ -70,7 +70,7 @@ const MovieDetails = () => {
                     color="primary"
                     sx={{ marginLeft: 2, marginTop: 3 }}
                   >
-                    Go back to home
+                    Go back
                   </Button>
                 </Link>
               </Breadcrumbs>
