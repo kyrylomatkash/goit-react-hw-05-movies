@@ -12,7 +12,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-// Основна функція комопненту
+// Основна функція компоненту
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

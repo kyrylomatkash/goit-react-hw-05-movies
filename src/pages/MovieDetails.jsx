@@ -10,7 +10,7 @@ import {
   Grid,
   CircularProgress,
 } from '@mui/material';
-// Імпорт логіки API запиту
+// Імпорт логіки API запитів
 import { getMovieId } from '../components/api-request/api-request';
 // Імпорт стилів
 import {
