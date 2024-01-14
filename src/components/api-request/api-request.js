@@ -28,10 +28,10 @@ const getTrendingMovies = async () => {
   }
 };
 // Пошук фільмів
-const getSearch = async searchName => {
+const getSearch = async searchQuery => {
   try {
     const { data } = await axios.get(
-      `/search/movie?query=${searchName}&api_key=${APIKEY}`
+      `/search/movie?query=${searchQuery}&api_key=${APIKEY}`
     );
     return data;
   } catch (error) {
